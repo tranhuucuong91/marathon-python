@@ -390,7 +390,7 @@ class MarathonClient(object):
             # Marathon is inconsistent about what type of object it returns on the multi
             # task deletion endpoint, depending on the version of Marathon. See:
             # https://github.com/mesosphere/marathon/blob/06a6f763a75fb6d652b4f1660685ae234bd15387/src/main/scala/mesosphere/marathon/api/v2/AppTasksResource.scala#L88-L95
-            if response.json().has_key("tasks"):
+            if 'tasks' in response.json():
                 return self._parse_response(response, MarathonTask, is_list=True, resource_name='tasks')
             else:
                 return response.json()
