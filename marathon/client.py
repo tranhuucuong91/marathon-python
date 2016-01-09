@@ -105,6 +105,20 @@ class MarathonClient(object):
         else:
             return False
 
+    def create_app_by_json(self, app):
+        """Create and start an app define by json string.
+
+        :param :string app: json string define app
+
+        :returns: the created app (on success)
+        :rtype: :class:`marathon.models.app.MarathonApp` or False
+        """
+        response = self._do_request('POST', '/v2/apps', data=app)
+        if response.status_code == 201:
+            return self._parse_response(response, MarathonApp)
+        else:
+            return False
+
     def list_apps(self, cmd=None, embed_tasks=False, embed_failures=False, **kwargs):
         """List all apps.
 
