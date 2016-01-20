@@ -249,8 +249,8 @@ class MarathonClient(object):
         :returns: success
         :rtype: dict containing the version ID
         """
-        data = group.to_json()
-        response = self._do_request('POST', '/v2/groups', data=data)
+
+        response = self._do_request('POST', '/v2/groups', data=group)
         return response.json()
 
     def list_groups(self, **kwargs):
